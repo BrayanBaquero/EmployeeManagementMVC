@@ -4,6 +4,20 @@
         </title>
     </head>
     <body>
+        <h3>@ViewData["PageTitle"]</h3>
+        @{
+            var employee = ViewData["Employee"] as EmployeeManagementMVC.Models.Employee;
+        }
+
+        <div>
+            Name: @employee.Name
+        </div>
+        <div>
+            Email: @employee.Email
+        </div>
+        <div>
+            Deparment: @employee.Deparment
+        </div>
         <h1>Details -cshtml from Views/Home folder </h1>
     </body>
 </html>
