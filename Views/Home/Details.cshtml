@@ -1,24 +1,26 @@
 ﻿@model HomeDetailsViewModel
     <!--Declare the address of the layout page-->
-    @{
-        ViewBag.Title = "Employee Details";
+@{
+    ViewBag.Title = "Employee Details";
 
-    }
+}
 
-    <h3>@Model.PageTitle</h3>
-
-    <div>
-        Name: @Model.Employee.Name
-    </div>
-    <div>
-        Email: @Model.Employee.Email
-    </div>
-    <div>
-        Deparment: @Model.Employee.Department
-    </div>
-    <h1>Details -cshtml from Views/Home folder </h1>
+<h3>@Model.PageTitle</h3>
+<div>
+    Id: @Model.Employee.Id
+</div>
+<div>
+    Name: @Model.Employee.Name
+</div>
+<div>
+    Email: @Model.Employee.Email
+</div>
+<div>
+    Deparment: @Model.Employee.Department
+</div>
+<h1>Details -cshtml from Views/Home folder </h1>
 
 <!--Add section previously declared in the _Layout file-->
-@section Scripts{ 
+@section Scripts{
     <script src="~/js/Custom.js"></script>
 }
