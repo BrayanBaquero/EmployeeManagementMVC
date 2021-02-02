@@ -17,9 +17,10 @@ namespace EmployeeManagementMVC.controllers
             _employeeRepository = employeeRepository;
 
         }
-        public string index() {
+        public ViewResult index() {
             //return Json(new {id=1,name="Prub" }); ;
-            return _employeeRepository.GetEmployee(1).Name;
+            var model= _employeeRepository.GetAllEmployee();
+            return View(model);
         }
         public ViewResult Details()
         {
