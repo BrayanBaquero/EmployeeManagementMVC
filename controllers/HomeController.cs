@@ -24,7 +24,6 @@ namespace EmployeeManagementMVC.controllers
         {
             //return Json(new {id=1,name="Prub" }); ;
             Employee model = _employeeRepository.GetEmployee(1);
-            ViewBag.Employee = model;
             ViewBag.PageTitle = "Employee Details";
             return View(model);
         }
