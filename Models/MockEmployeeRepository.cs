@@ -13,9 +13,9 @@ namespace EmployeeManagementMVC.Models
         {
             _employeeList = new List<Employee>()
             {
-                new Employee(){Id=1,Name="Jessica",Deparment="HR", Email="jessica@gmail.com" },
-                new Employee(){Id=1,Name="Brayan",Deparment="Boss", Email="Brayan@gmail.com" },
-                new Employee(){Id=1,Name="Cristina",Deparment="HB", Email="Cristina@gmail.com" },
+                new Employee(){Id=1,Name="Jessica",Department="HR", Email="jessica@gmail.com" },
+                new Employee(){Id=1,Name="Brayan",Department="Boss", Email="Brayan@gmail.com" },
+                new Employee(){Id=1,Name="Cristina",Department="HB", Email="Cristina@gmail.com" },
             };
         }
         public Employee GetEmployee(int Id)

@@ -4,19 +4,16 @@
         </title>
     </head>
     <body>
-        <h3>@ViewData["PageTitle"]</h3>
-        @{
-            var employee = ViewData["Employee"] as EmployeeManagementMVC.Models.Employee;
-        }
-
+        <h3>@ViewBag.PageTitle</h3>
+        
         <div>
-            Name: @employee.Name
+            Name: @ViewBag.Employee.Name
         </div>
         <div>
-            Email: @employee.Email
+            Email: @ViewBag.Employee.Email
         </div>
         <div>
-            Deparment: @employee.Deparment
+            Deparment: @ViewBag.Employee.Department
         </div>
         <h1>Details -cshtml from Views/Home folder </h1>
     </body>
