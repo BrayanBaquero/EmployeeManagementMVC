@@ -1,4 +1,4 @@
-﻿@model EmployeeManagementMVC.Models.Employee
+﻿@model EmployeeManagementMVC.ViewModels.HomeDetailsViewModel
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -6,16 +6,16 @@
         </title>
     </head>
     <body>
-        <h3>@ViewBag.PageTitle</h3>
+        <h3>@Model.PageTitle</h3>
         
         <div>
-            Name: @Model.Name
+            Name: @Model.Employee.Name
         </div>
         <div>
-            Email: @Model.Email
+            Email: @Model.Employee.Email
         </div>
         <div>
-            Deparment: @Model.Department
+            Deparment: @Model.Employee.Department
         </div>
         <h1>Details -cshtml from Views/Home folder </h1>
     </body>
