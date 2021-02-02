@@ -36,9 +36,10 @@ namespace EmployeeManagementMVC
 
             app.UseStaticFiles();
             //app.UseMvcWithDefaultRoute();//Suport MVC aplication
-            app.UseMvc(routes => {
-                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-            });
+            //app.UseMvc(routes => {
+            //    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            //});
+            app.UseMvc(); 
 
              
         
