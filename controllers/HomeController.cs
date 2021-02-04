@@ -36,6 +36,11 @@ namespace EmployeeManagementMVC.controllers
             
             return View(homeDetailsViewModel);
         }
+
+        public ViewResult Create()
+        {
+            return View();
+        }
     }
 }
  
