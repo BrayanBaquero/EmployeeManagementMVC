@@ -9,6 +9,6 @@ namespace EmployeeManagementMVC.ViewModels
     public class HomeDetailsViewModel
     {
         public Employee Employee { get; set; }
-        public String PageTitle { get; set; }
+        public String PageTitle  { get; set; }
     }
 }
