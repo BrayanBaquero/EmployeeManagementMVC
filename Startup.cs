@@ -34,7 +34,8 @@ namespace EmployeeManagementMVC
 
             //Inyeccion de dependencia, necesaria para que cuando se instancie la interface se incluya tambien su implementaicon
             //services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
-            services.AddTransient<IEmployeeRepository, MockEmployeeRepository>();
+            //services.AddTransient<IEmployeeRepository, MockEmployeeRepository>();//Se hace uso de el metodo de Memory Repository
+            services.AddScoped<IEmployeeRepository,SQLEmployeeReporitory>();//Se hace uso del metodo de insercion en SQL Repository
 
         }
 
