@@ -14,5 +14,11 @@ namespace EmployeeManagementMVC.Models
                     
         }
         public DbSet<Employee> Employees { get; set; }
+
+        //Inicializar base de datos que datos
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();//Extensioon Metod
+        }
     }
 }
