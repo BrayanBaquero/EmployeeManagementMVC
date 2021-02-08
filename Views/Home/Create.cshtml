@@ -1,14 +1,14 @@
-﻿@model Employee
+﻿@model EmployeeCreateViewModel
 
 @{ 
     ViewBag.Title = "Create Employee";
 }
 
-<form asp-controller="Home" asp-action="Create" method="post" class="m-3">
+<form enctype="multipart/form-data" asp-controller="Home" asp-action="Create" method="post" class="m-3">
     <div class="form-group row">
         <label asp-for="Name" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-           <input asp-for="Name" class="form-control" placeholder="Name">
+            <input asp-for="Name" class="form-control" placeholder="Name">
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
     </div>
@@ -22,17 +22,48 @@
     <div class="form-group row">
         <label asp-for="Department" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <select asp-for="Department" class="custom-select mr-sm-2"  
-                    asp-items="Html.GetEnumSelectList<Dept>( )">
+            <select asp-for="Department" class="custom-select mr-sm-2"
+                    asp-items="Html.GetEnumSelectList<Dept>( )"> 
                 <option value="">Please Select</option>
             </select>
-             <span asp-validation-for="Department" class="text-danger"></span>
+            <span asp-validation-for="Department" class="text-danger"></span>
         </div>
     </div>
+    <div class="form-group row">
+        <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <div class="custom-file">
+                <input asp-for="Photo" class="form-control custom-file-input">
+                <label class="custom-file-label">Choose File ..</label>
+            </div>
+        </div>
+    </div>
+
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </div>
+
+    @section Scripts{
+        <script>
+            console.log("Text unit 1");
+            const selectElement = document.querySelector('.custom-file-input');
+            selectElement.addEventListener('change', (event) => {
+                var FileName = event.target.value.split("\\");
+                //console.log("test:" + FileName);
+                document.querySelector('.custom-file-label').innerHTML = FileName[FileName.length-1]
+            });
+
+            //$(document).ready(function () {
+            //    $('.custom-file-imnut').on("change", function () {
+            //        var fileName = $(this).val().split("\\").pop();
+            //        console.log(fileName);
+            //        $(this).next('.custom-file-label').html(fileName);
+            //    });
+            //});
+        </script>
+
+    }
 </form>
