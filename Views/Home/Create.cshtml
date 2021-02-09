@@ -30,10 +30,10 @@
         </div>
     </div>
     <div class="form-group row">
-        <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
+        <label asp-for="Photos" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
             <div class="custom-file">
-                <input asp-for="Photo" class="form-control custom-file-input">
+                <input multiple asp-for="Photos" class="form-control custom-file-input">
                 <label class="custom-file-label">Choose File ..</label>
             </div>
         </div>
@@ -48,12 +48,20 @@
 
     @section Scripts{
         <script>
-            console.log("Text unit 1");
+            //console.log("Text unit 1");
             const selectElement = document.querySelector('.custom-file-input');
             selectElement.addEventListener('change', (event) => {
                 var FileName = event.target.value.split("\\");
-                //console.log("test:" + FileName);
-                document.querySelector('.custom-file-label').innerHTML = FileName[FileName.length-1]
+                var FileLabel = document.querySelector('.custom-file-label');
+                var Files = event.target.files;
+                if (Files.length > 1) {
+                    FileLabel.innerHTML = Files.length + " files selected";
+                } else if (Files.length == 1) {
+                    FileLabel.innerHTML = FileName[0].name;
+                }
+                //console.log(JSON.stringify(event.target));
+                //console.log(event.target.files);
+                //document.querySelector('.custom-file-label').innerHTML = FileName[FileName.length-1]
             });
 
             //$(document).ready(function () {

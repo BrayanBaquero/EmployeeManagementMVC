@@ -1,6 +1,7 @@
 ﻿using EmployeeManagementMVC.Models;
 using EmployeeManagementMVC.ViewModels;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -52,12 +53,15 @@ namespace EmployeeManagementMVC.controllers
             if (ModelState.IsValid)
             {
                 string uniqueFileName = null;
-                if (model.Photo != null)
+                if (model.Photos != null && model.Photos.Count > 0)
                 {
-                    String uploadsFolder=Path.Combine(hostingEnviroment.WebRootPath, "images");
-                    uniqueFileName=Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                    foreach (IFormFile photo in model.Photos)
+                    {
+                        String uploadsFolder = Path.Combine(hostingEnviroment.WebRootPath, "images");
+                        uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
+                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                        photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                    }
                 }
                 //  Employee newEmployee = _employeeRepository.Add(employee);
                 Employee newEmployee = new Employee
