@@ -1,10 +1,13 @@
-﻿@model EmployeeCreateViewModel
+﻿@model EmployeeEditViewModel
 
-@{ 
-    ViewBag.Title = "Create Employee";
+@{
+    ViewBag.Title = "Edit Employee";
+    var photoPath = "~/images/" + (Model.ExistingPhotoPath ?? "noimage.jpeg");
 }
 
-<form enctype="multipart/form-data" asp-controller="Home" asp-action="Create" method="post" class="m-3">
+<form enctype="multipart/form-data" asp-controller="Home" asp-action="edit" method="post" class="m-3">
+    <input hidden asp-for="Id" />
+    <input hidden asp-for="ExistingPhotoPath" />
     <div class="form-group row">
         <label asp-for="Name" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
@@ -23,7 +26,7 @@
         <label asp-for="Department" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
             <select asp-for="Department" class="custom-select mr-sm-2"
-                    asp-items="Html.GetEnumSelectList<Dept>( )"> 
+                    asp-items="Html.GetEnumSelectList<Dept>( )">
                 <option value="">Please Select</option>
             </select>
             <span asp-validation-for="Department" class="text-danger"></span>
@@ -33,16 +36,20 @@
         <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
             <div class="custom-file">
-                <input  asp-for="Photo" class="form-control custom-file-input">
-                <label class="custom-file-label">Choose File ..</label>
+                <input multiple asp-for="Photo" class="form-control custom-file-input">
+                <label class="custom-file-label">Click here to change photo ..</label>
             </div>
         </div>
     </div>
 
-    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group row col-sm-4 offset-4">
+        <img src="@photoPath" class="imageThumbnail" asp-append-version="true" />
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div> 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-controller="home" asp-action="index" class="btn btn-primary">Cancel</a>
         </div>
     </div>
 
@@ -52,12 +59,9 @@
             const selectElement = document.querySelector('.custom-file-input');
             selectElement.addEventListener('change', (event) => {
                 var FileName = event.target.value.split("\\");
-                console.log(JSON.stringify(event.target));
-                //console.log(event.target.files);
-                document.querySelector('.custom-file-label').innerHTML = FileName[FileName.length-1]
+                document.querySelector('.custom-file-label').innerHTML = FileName[FileName.length - 1]
             });
 
-           
         </script>
 
     }

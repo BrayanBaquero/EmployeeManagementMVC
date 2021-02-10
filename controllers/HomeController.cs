@@ -47,21 +47,34 @@ namespace EmployeeManagementMVC.controllers
         {
             return View();
         }
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            Employee employee = _employeeRepository.GetEmployee(id);
+            EmployeeEditViewModel employeeEditViewModel = new EmployeeEditViewModel
+            {
+                Id = employee.Id,
+                Name = employee.Name,
+                Email = employee.Email,
+                Department = employee.Department,
+                ExistingPhotoPath = employee.PhotoPath
+            };
+            return View(employeeEditViewModel);
+        }
         [HttpPost]
         public IActionResult Create(EmployeeCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
                 string uniqueFileName = null;
-                if (model.Photos != null && model.Photos.Count > 0)
+                if (model.Photo != null )
                 {
-                    foreach (IFormFile photo in model.Photos)
-                    {
+                    
                         String uploadsFolder = Path.Combine(hostingEnviroment.WebRootPath, "images");
-                        uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
+                        uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
                         string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                        photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                    }
+                        model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                    
                 }
                 //  Employee newEmployee = _employeeRepository.Add(employee);
                 Employee newEmployee = new Employee
