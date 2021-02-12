@@ -46,6 +46,11 @@ namespace EmployeeManagementMVC
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseStatusCodePagesWithRedirects("/Error/{0}");
+                //app.UseStatusCodePages();
+            }
 
             app.UseStaticFiles();
             //app.UseMvcWithDefaultRoute();//Suport MVC aplication
