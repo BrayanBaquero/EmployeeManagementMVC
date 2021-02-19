@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
 
 namespace EmployeeManagementMVC
 {
@@ -28,6 +29,9 @@ namespace EmployeeManagementMVC
             ////Inyectar dependencia que realizar gestion de base de datos con entity, y pasar la cadena de coneccion a base de datos
             ///que se encuentra en appsettings.json
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>(); 
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
             //services.AddMvcCore(options => options.EnableEndpointRouting = false);
@@ -55,8 +59,8 @@ namespace EmployeeManagementMVC
 
             app.UseStaticFiles();
             //app.UseMvcWithDefaultRoute();//Suport MVC aplication
-
             //app.UseMvc(); 
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
