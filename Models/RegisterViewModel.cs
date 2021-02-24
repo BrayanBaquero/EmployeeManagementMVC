@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EmployeeManagementMVC.Utilities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,7 @@ namespace EmployeeManagementMVC.Models
         [Required]
         [EmailAddress]
         [Remote(action:"IsEmailInUse",controller:"Account")]
+        [ValidEmailDomain(allowedDomain:"gmail.com",ErrorMessage ="Email Domain must be gmail.com")]
         public String Email { get; set; }
 
         [Required]
