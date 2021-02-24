@@ -32,7 +32,7 @@ namespace EmployeeManagementMVC
             ///que se encuentra en appsettings.json
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("EmployeeDBConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>//configurar restricciones de contraseña
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>//configurar restricciones de contraseña
             {
                 options.Password.RequiredLength = 10;
                 options.Password.RequiredUniqueChars = 3;

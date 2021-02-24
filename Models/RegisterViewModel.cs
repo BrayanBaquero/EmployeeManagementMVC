@@ -24,5 +24,6 @@ namespace EmployeeManagementMVC.Models
         [Display(Name="Confirm password")]
         [Compare("Password",ErrorMessage="Password and conformation password do not match.")]
         public String ConfirmPassword { get; set; }
+        public string City { get; set; }
     }
 }
