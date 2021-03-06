@@ -107,5 +107,11 @@ namespace EmployeeManagementMVC.controllers
             }
             return View(model);
         }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
