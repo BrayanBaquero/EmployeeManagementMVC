@@ -21,6 +21,11 @@ namespace EmployeeManagementMVC.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Seed();//Extensioon Metod
+
+            foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
     }
 }
