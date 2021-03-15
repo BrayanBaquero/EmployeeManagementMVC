@@ -48,9 +48,17 @@ namespace EmployeeManagementMVC
 
             services.AddAuthorization(options =>
             {
-            options.AddPolicy("DeleteRolePolicy",
-               policy => policy.RequireClaim("Delete Role"));
-                                    //.RequireClaim("Create Role"));
+                options.AddPolicy("DeleteRolePolicy",
+                    policy => policy.RequireClaim("Delete Role"));
+
+                options.AddPolicy("EditRolePolicy",
+                    policy => policy.RequireClaim("Edit Role"));
+
+                options.AddPolicy("CreateRolePolicy",
+                    policy => policy.RequireClaim("Create Role"));
+
+                options.AddPolicy("AdminRolePolicy",
+                   policy => policy.RequireClaim("Admin"));
             });
             services.AddMvc(options => options.EnableEndpointRouting = false);
             //services.AddMvcCore(options => options.EnableEndpointRouting = false);
