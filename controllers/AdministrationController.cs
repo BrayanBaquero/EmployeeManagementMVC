@@ -29,6 +29,13 @@ namespace EmployeeManagementMVC.controllers
             this.logger = logger;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> ManageUserClaims(string userId)
@@ -457,7 +464,7 @@ namespace EmployeeManagementMVC.controllers
 
             return RedirectToAction("EditRole", new { Id = roleId });
         }
-       
+
 
     }
 }

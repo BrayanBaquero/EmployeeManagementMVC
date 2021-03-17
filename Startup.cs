@@ -46,6 +46,11 @@ namespace EmployeeManagementMVC
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = new PathString("/Administration/AccessDenied");
+            });
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("DeleteRolePolicy",

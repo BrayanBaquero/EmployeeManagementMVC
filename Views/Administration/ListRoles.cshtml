@@ -40,10 +40,10 @@
                         </span>
 
                         <span id="deleteSpan_@role.Id">
-                            @if ((await authorizationService.AuthorizeAsync(User, "DeleteRolePolicy")).Succeeded)
-                            {
+                            @*@if ((await authorizationService.AuthorizeAsync(User, "DeleteRolePolicy")).Succeeded)
+                            {*@
                                 <a href="#" class="btn btn-danger" onclick="confirmDelete('@role.Id',true)">Delete</a>
-                            }
+                            @*}*@
                         </span>
                     </form>
                 </div>
