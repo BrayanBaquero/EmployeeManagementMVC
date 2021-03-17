@@ -57,10 +57,10 @@ namespace EmployeeManagementMVC
                     policy => policy.RequireClaim("Delete Role"));
 
                 options.AddPolicy("EditRolePolicy",
-                    policy => policy.RequireClaim("Edit Role"));
+                    policy => policy.RequireClaim("Edit Role","true"));
 
                 options.AddPolicy("CreateRolePolicy",
-                    policy => policy.RequireClaim("Create Role"));
+                    policy => policy.RequireClaim("Create Role","true"));
 
                 options.AddPolicy("AdminRolePolicy",
                    policy => policy.RequireClaim("Admin"));
