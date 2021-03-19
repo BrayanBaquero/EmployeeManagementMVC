@@ -57,13 +57,17 @@ namespace EmployeeManagementMVC
                     policy => policy.RequireClaim("Delete Role"));
 
                 options.AddPolicy("EditRolePolicy",
-                    policy => policy.RequireClaim("Edit Role","true"));
+                    policy => policy.RequireAssertion(context=>
+                        context.User.IsInRole("Admin") &&
+                        context.User.HasClaim(claim => claim.Type=="Edit Role" && claim.Value=="true") ||
+                        context.User.IsInRole("Super Admin")
+                    ));
 
                 options.AddPolicy("CreateRolePolicy",
                     policy => policy.RequireClaim("Create Role","true"));
 
                 options.AddPolicy("AdminRolePolicy",
-                   policy => policy.RequireClaim("Admin"));
+                   policy => policy.RequireRole("Admin"));
             });
             services.AddMvc(options => options.EnableEndpointRouting = false);
             //services.AddMvcCore(options => options.EnableEndpointRouting = false);
