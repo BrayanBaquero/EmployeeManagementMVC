@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using EmployeeManagementMVC.Security;
 
 namespace EmployeeManagementMVC
 {
@@ -56,12 +57,16 @@ namespace EmployeeManagementMVC
                 options.AddPolicy("DeleteRolePolicy",
                     policy => policy.RequireClaim("Delete Role"));
 
+                //Se remplaza con authorization requrement handler
+                //options.AddPolicy("EditRolePolicy",
+                //    policy => policy.RequireAssertion(context=>
+                //        context.User.IsInRole("Admin") &&
+                //        context.User.HasClaim(claim => claim.Type=="Edit Role" && claim.Value=="true") ||
+                //        context.User.IsInRole("Super Admin")
+                //    ));
+
                 options.AddPolicy("EditRolePolicy",
-                    policy => policy.RequireAssertion(context=>
-                        context.User.IsInRole("Admin") &&
-                        context.User.HasClaim(claim => claim.Type=="Edit Role" && claim.Value=="true") ||
-                        context.User.IsInRole("Super Admin")
-                    ));
+                    policy => policy.AddRequirements(new ManageAdminRolesAndClaimsRequirement()));
 
                 options.AddPolicy("CreateRolePolicy",
                     policy => policy.RequireClaim("Create Role","true"));
@@ -76,6 +81,8 @@ namespace EmployeeManagementMVC
             //services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
             //services.AddTransient<IEmployeeRepository, MockEmployeeRepository>();//Se hace uso de el metodo de Memory Repository
             services.AddScoped<IEmployeeRepository,SQLEmployeeReporitory>();//Se hace uso del metodo de insercion en SQL Repository
+
+            services.AddSingleton<IAuthorizationHandler, CanEditOnlyOtherAdminRolesAndClaimsHandler>();
 
         }
 
