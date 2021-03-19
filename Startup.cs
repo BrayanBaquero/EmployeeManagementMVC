@@ -83,6 +83,7 @@ namespace EmployeeManagementMVC
             services.AddScoped<IEmployeeRepository,SQLEmployeeReporitory>();//Se hace uso del metodo de insercion en SQL Repository
 
             services.AddSingleton<IAuthorizationHandler, CanEditOnlyOtherAdminRolesAndClaimsHandler>();
+            services.AddSingleton<IAuthorizationHandler, SuperAdminHandler>();
 
         }
 
